@@ -42,8 +42,8 @@ function App() {
     
       <NavBar />
       <Routes>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path='/' element={<TweetsContainer userName={updatedUserName} />} />
         <Route path='/profile' element={<Profile userName={userName} setUserName={setUserName} handleSave={handleSave} setUpdatedUserName={setUpdatedUserName} />} />
       </Routes>
