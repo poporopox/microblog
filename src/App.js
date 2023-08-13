@@ -7,7 +7,10 @@ import { useState, useEffect } from 'react';
 import localforage from "localforage";
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import { AuthProvider } from './contexts/AuthContext';
+import { useAuth } from './components/useAuth';
+
+import Dashboard from './pages/Dashboard';
+
 
 
 
@@ -16,6 +19,7 @@ function App() {
   const [userName, setUserName] = useState('');
   const [updatedUserName, setUpdatedUserName] = useState(userName);
   const navigate = useNavigate();
+  
 
   const handleSave = (e) => {
     e.preventDefault()
@@ -44,14 +48,17 @@ function App() {
     <div className="App">
     
       
-        <NavBar />
-        <Routes>
-          
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path='/' element={<TweetsContainer userName={updatedUserName} />} />
-          <Route path='/profile' element={<Profile userName={userName} setUserName={setUserName} handleSave={handleSave} setUpdatedUserName={setUpdatedUserName} />} />
-        </Routes>
+        
+          <NavBar />
+          <Routes>
+            
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path='/' element={<TweetsContainer userName={updatedUserName} />} />
+            <Route path='/profile' element={<Profile userName={userName} setUserName={setUserName} handleSave={handleSave} setUpdatedUserName={setUpdatedUserName} />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Routes>
+        
       
       
       

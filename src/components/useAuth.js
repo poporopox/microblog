@@ -1,10 +1,6 @@
-import { createContext, useState } from 'react';
-export const useAuth = createContext({})
+import { useState } from 'react';
 
-
- 
-
-const useAuth = () => {
+export const useAuth = () => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {
@@ -17,9 +13,8 @@ const useAuth = () => {
 
   const logout = () => {
     setUser(null);
-   
+    
   };
 
   return { user, login, signup, logout };
 };
-export default useAuth

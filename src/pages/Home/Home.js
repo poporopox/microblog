@@ -19,6 +19,7 @@ const TweetsContainer = ({ userName }) => {
                 content: content,
                 userName: userName,
                 date: moment().format('YYYY-MM-DD HH:mm:ss')
+                
             }
             axios.post(url, newTweet);
         }
