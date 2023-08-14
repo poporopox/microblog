@@ -5,13 +5,17 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import { useAuth } from '../../components/useAuth';
 
-const Signup = () => {
+const Signup = ({setIsUser}) => {
   const { signup } = useAuth();
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   });
+  function userValidation() {
+    setIsUser(true)
+    localStorage.setItem('isUser', true);
+  }
 
   const handleSignup = async () => {
     try {
@@ -79,7 +83,7 @@ const Signup = () => {
         />
        </div>
       <div classname='btns-container'>
-        <Btn onSubmit={handleSignup}>Signup</Btn>
+        <Btn onSubmit={userValidation}>Signup</Btn>
 
       </div>
       

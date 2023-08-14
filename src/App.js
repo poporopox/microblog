@@ -19,6 +19,7 @@ function App() {
   const [userName, setUserName] = useState('');
   const [updatedUserName, setUpdatedUserName] = useState(userName);
   const navigate = useNavigate();
+  const [isUser, setIsUser] = useState(false)
   
 
   const handleSave = (e) => {
@@ -49,15 +50,20 @@ function App() {
     
       
         
-          <NavBar />
-          <Routes>
-            
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path='/' element={<TweetsContainer userName={updatedUserName} />} />
-            <Route path='/profile' element={<Profile userName={userName} setUserName={setUserName} handleSave={handleSave} setUpdatedUserName={setUpdatedUserName} />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-          </Routes>
+          {isUser ? <TweetsContainer /> : null}
+          <Login />
+          <Signup />
+           
+            <Routes>
+              
+              <Route path="/login" element={<Login isUser={isUser} setIsUser={setIsUser} />} />
+              <Route path="/signup" element={<Signup isUser={isUser} setIsUser={setIsUser}  />} />
+              
+              <Route path='/profile' element={<Profile userName={userName} setUserName={setUserName} handleSave={handleSave} setUpdatedUserName={setUpdatedUserName} />} />
+              <Route path='/dashboard' element={<Dashboard />} />
+            </Routes> 
+             
+           
         
       
       

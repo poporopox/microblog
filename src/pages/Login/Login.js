@@ -7,9 +7,14 @@ import { useAuth } from '../../components/useAuth';
 
 
 
-const Login = () => {
+const Login = ({setIsUser}) => {
   const { login } = useAuth();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+
+  function userValidation() {
+    setIsUser(true)
+    localStorage.setItem('isUser', true);
+  }
 
   const handleLogin = async () => {
     try {
@@ -65,7 +70,7 @@ const Login = () => {
           />
        </div>
       <div classname='btns-container'>
-        <Btn onSubmit={handleLogin} type="submit">Login</Btn>
+        <Btn onSubmit={userValidation} type="submit">Login</Btn>
 
       </div>
       
