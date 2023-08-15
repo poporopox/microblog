@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import localforage from "localforage";
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import { useAuth } from './components/useAuth';
+
 
 import Dashboard from './pages/Dashboard';
 
@@ -28,10 +28,7 @@ function App() {
     navigate('./')
   }
 
-  // const handleSave = (e) => {
-  //   e.preventDefault()
-  //   setUpdatedUserName(userName);
-  // }
+
 
   useEffect(() => {
     localforage.getItem("tweeter").then(val => {
@@ -50,15 +47,13 @@ function App() {
     
       
         
-          {isUser ? <TweetsContainer /> : null}
-          <Login />
-          <Signup />
+          
+          <NavBar />
+          <Login isUser={isUser} setIsUser={setIsUser}/>
+          <Signup isUser={isUser} setIsUser={setIsUser} />
            
             <Routes>
-              
-              <Route path="/login" element={<Login isUser={isUser} setIsUser={setIsUser} />} />
-              <Route path="/signup" element={<Signup isUser={isUser} setIsUser={setIsUser}  />} />
-              
+              {isUser ? <Route path='/' element={<TweetsContainer userName={updatedUserName} />} /> : null }
               <Route path='/profile' element={<Profile userName={userName} setUserName={setUserName} handleSave={handleSave} setUpdatedUserName={setUpdatedUserName} />} />
               <Route path='/dashboard' element={<Dashboard />} />
             </Routes> 

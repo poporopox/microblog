@@ -1,22 +1,23 @@
 import './Login.css'
-// import { useState } from "react";
 import Btn from '../../UIKit/Elements/Btn/Btn';
 import React, { useState } from 'react';
-// import axios from 'axios';
 import { useAuth } from '../../components/useAuth';
+
 
 
 
 const Login = ({setIsUser}) => {
   const { login } = useAuth();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+  
+  
 
-  function userValidation() {
+  
+
+  const handleLogin = async (e) => {
     setIsUser(true)
     localStorage.setItem('isUser', true);
-  }
-
-  const handleLogin = async () => {
+    e.preventDefault()
     try {
      
       const response = await fetch('https://64be4a645ee688b6250c2373.mockapi.io/accounts', {
@@ -31,13 +32,15 @@ const Login = ({setIsUser}) => {
         const userData = await response.json();
         
         login(userData);
-      } else {
-        
-      }
+      } 
     } catch (error) {
       
     }
   };
+
+  
+
+
 
   return (
     <div classname="login">
@@ -70,7 +73,7 @@ const Login = ({setIsUser}) => {
           />
        </div>
       <div classname='btns-container'>
-        <Btn onSubmit={userValidation} type="submit">Login</Btn>
+        <Btn type="submit">Login</Btn>
 
       </div>
       
